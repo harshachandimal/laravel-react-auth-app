@@ -1,5 +1,5 @@
 import React from "react";
-import type { ISignInFormProp } from "../../utilities/types/SignIn";
+import type { ISignInFormProp } from "../../utilities/types/SignIn/SignIn";
 
 
 export const SignInForm: React.FC<ISignInFormProp> = ({handleInputField, handleSubmit}) => {

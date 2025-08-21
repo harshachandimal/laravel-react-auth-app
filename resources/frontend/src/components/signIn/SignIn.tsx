@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { SignInForm } from "./SignInForm.tsx";
-import type { ISignInState } from "../../utilities/types/SignIn";
-import * as axios from "axios";
+import type { ISignInState } from "../../utilities/types/SignIn/SignIn";
+import { UserSignIn } from "../../utilities/api/auth/UserSignIn.ts";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "../../store.tsx";
 
 export const SignIn: React.FC = () => {
     const [SignDetails, setSignDetails] = useState<ISignInState>({
         email: "",
         password: "",
     });
+
+    //need to define type definition for dispatching method
+    const dispatch = useDispatch<AppDispatch>();
 
     const handleInputField = (
         event: React.ChangeEvent<HTMLInputElement>,
@@ -20,13 +25,10 @@ export const SignIn: React.FC = () => {
         }));
     };
 
-    const handleSubmit = async (event: React.FormEvent): Promise<void> => {
+    const handleSubmit = async (event: React.FormEvent)=> {
         event.preventDefault();
 
-        //const response = await axios.post('http://127.0.0.1:8000/api/sign-in', SignDetails)
-
-
-
+        await dispatch(UserSignIn({SignDetails}))
     };
 
     return (

@@ -6,5 +6,9 @@ export interface ISignInState {
 }
 export interface ISignInFormProp {
     handleInputField: (event: React.ChangeEvent<HTMLInputElement>) => void
-    handleSubmit: () => Promise<void>
+    handleSubmit: (event: React.FormEvent) => Promise<void>
+}
+
+export interface IUserSignInPayload {
+    SignDetails: ISignInState;
 }
