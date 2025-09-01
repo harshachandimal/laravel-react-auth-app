@@ -38,6 +38,7 @@ const setPayloadValuesIntoStore = (state : IAuthInitialState, payload: IAuthPayl
     if(!payload){
         return;
     }
+
     state.token = payload.user_token;
     state.isAuthenticated = true;
     state.isLoading = false;
