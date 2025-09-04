@@ -1,21 +1,23 @@
-import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { SignIn } from "../../components/signIn/SignIn.tsx";
 import { useSelector } from "react-redux";
-import { checkUserAuthentication, checkUserTokenNotEmpty } from "./CheckUserAuthentication.ts";
+import {checkUserAuthentication, checkUserRole, checkUserTokenNotEmpty} from "./CheckUserAuthentication.ts";
+import Products from "../../components/products/Products.tsx";
 
 interface RootState {
     auth: {
         isAuthenticated: boolean;
         user_id: string | null;
         token: string | null;
+        user_role: number
     };
 }
 
 const AppRoutes: React.FC = () => {
-    const { isAuthenticated, token } = useSelector(
+    const { isAuthenticated, token , user_role } = useSelector(
         (state: RootState) => state.auth,
     );
+
 
     return (
         <Routes>
@@ -24,8 +26,8 @@ const AppRoutes: React.FC = () => {
             <Route
                 path="/dashboard"
                 element={
-                    checkUserAuthentication(isAuthenticated) && checkUserTokenNotEmpty(token) ? (
-                        <div>Dashboard</div>
+                    checkUserAuthentication(isAuthenticated) && checkUserTokenNotEmpty(token) && checkUserRole(user_role)? (
+                        <Products />
                     ) : (
                         <Navigate to="/" replace />
                     )

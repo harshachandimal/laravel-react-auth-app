@@ -6,3 +6,5 @@ export const checkUserTokenNotEmpty = (userToken: string| null) => {
   return userToken !== "";
 }
 
+export const checkUserRole = (userRole: number) => {
+    return userRole === 1}

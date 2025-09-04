@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import type { IUserSignInPayload } from "../../types/SignIn/SignIn";
 
 
-export const UserSignIn = createAsyncThunk<AxiosResponse<any> | undefined, IUserSignInPayload>(
+export const UserSignIn = createAsyncThunk<AxiosResponse<Response> , IUserSignInPayload>(
     "auth/signIn",
     async ({ SignDetails: SignDetails }) => {
         return axios.get("/sanctum/csrf-cookie").then(async () => {

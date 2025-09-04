@@ -25,6 +25,7 @@ class UserController extends Controller
                 'message' => 'User found',
                 'user_token' => $user->createToken('testToken',['server:admin'])->plainTextToken,
                 'user_id' => $user->id,
+                'user_role'=> 1
             ]);
         }
 

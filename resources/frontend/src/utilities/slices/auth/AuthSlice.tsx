@@ -8,7 +8,9 @@ const initialState: IAuthInitialState = {
     user_id: "",
     isAuthenticated: false,
     isLoading: false,
+    user_role: 0,
 };
+
 
 const authSlice = createSlice({
     name: "auth",
@@ -43,6 +45,8 @@ const setPayloadValuesIntoStore = (state : IAuthInitialState, payload: IAuthPayl
     state.isAuthenticated = true;
     state.isLoading = false;
     state.user_id = payload.user_id;
+    state.user_role = payload.user_role
+
 
 }
 
