@@ -3,8 +3,7 @@ import { SignInForm } from "./SignInForm.tsx";
 import type { ISignInState } from "../../utilities/types/SignIn/SignIn";
 import { UserSignIn } from "../../utilities/api/auth/UserSignIn.ts";
 import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch } from "../../store.tsx";
-import type { RootState } from "@reduxjs/toolkit/query";
+import type { AppDispatch, RootState } from "../../store.tsx";
 import { useNavigate } from "react-router-dom";
 
 export const SignIn: React.FC = () => {

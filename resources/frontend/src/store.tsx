@@ -26,6 +26,10 @@ const store = configureStore({
 
 const persistor = persistStore(store)
 
+
+// Type for the entire Redux state
+export type RootState = ReturnType<typeof store.getState>;
+
 export type AppDispatch = typeof store.dispatch;
 
 export { store, persistor };
