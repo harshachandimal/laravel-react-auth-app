@@ -1,15 +1,18 @@
 <?php
 
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+namespace Tests\Feature\User;
 
-use  App\Models\User;
+use App\Models\User;
+use Hash;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase;
 
 final class UserSignInTest extends TestCase
 {
 
     use RefreshDatabase;
+
     public function test_user_can_sign_in_with_valid_credentials()
     {
         $user = User::factory()->create([
@@ -24,7 +27,6 @@ final class UserSignInTest extends TestCase
         ];
 
         $response = $this->post('api/sign-in', $userSignInCredentials);
-
 
 
         $response->assertStatus(200);
