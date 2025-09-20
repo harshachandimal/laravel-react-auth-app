@@ -11,7 +11,7 @@ class GetProductDetails
     {
 
         $products = Product::query()
-            ->select(['product_name', 'product_price', 'product_qty', 'product_description'])
+            ->select(['id','product_name', 'product_price', 'product_qty', 'product_description'])
             ->get();
 
         return [

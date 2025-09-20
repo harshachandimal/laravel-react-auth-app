@@ -3,14 +3,12 @@ import {Navbar} from '../common/NavBar';
 import {products} from "./ProductDetails.ts";
 import {ProductCard} from "./ProductCard.tsx";
 
-
-
-
-
 /**
  * Page: Products
  */
 const Products: React.FC = () => {
+
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white">
       <Navbar />

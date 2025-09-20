@@ -27,6 +27,7 @@ final class GetProductDetailsTest extends TestCase
             'status' => 200,
             'product_details' => [
                 [
+                    'id' => $product->id,
                     'product_name' => $product->product_name,
                     'product_price' => (string)$product->product_price,
                     'product_qty' => $product->product_qty,
