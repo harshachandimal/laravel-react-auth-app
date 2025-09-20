@@ -47,6 +47,8 @@ const setPayloadValuesIntoStore = (state : IAuthInitialState, payload: IAuthPayl
     state.user_id = payload.user_id;
     state.user_role = payload.user_role
 
+    localStorage.setItem("token", payload.user_token);
+
 
 }
 
