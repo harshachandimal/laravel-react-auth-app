@@ -2,14 +2,10 @@
  * Interfaces
  */
 interface IProduct {
-    id: number;
-    title: string;
-    description: string;
-    price: number;
-    originalPrice?: number;
-    rating: number; // 0-5
-    reviews: number;
-    inStock: boolean;
-    imageUrl: string;
-    badges?: string[];
+    id: string;
+    product_name: string;
+    product_price: number;
+    product_qty: number;
+    product_description: string;
+
 }

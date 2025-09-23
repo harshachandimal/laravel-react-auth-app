@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import {Navbar} from '../common/NavBar';
-import {products} from "./ProductDetails.ts";
 import {ProductCard} from "./ProductCard.tsx";
+import axios from "axios";
 
 /**
  * Page: Products
  */
 const Products: React.FC = () => {
+
+    const [productDetails, setProductDetails] = useState<IProduct[]>([]);
+
+    useEffect(() => {
+        fetchProducts().then()
+    }, []);
+
+    const fetchProducts = async () => {
+        const response = await axios.get('api/get-product-details')
+        if(response.status === 200){
+            setProductDetails(response.data.product_details)
+        }
+
+    }
 
 
   return (
@@ -35,7 +49,7 @@ const Products: React.FC = () => {
         </div>
 
         <section aria-label="Product list" className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {products.map((p) => (
+          {productDetails.map((p) => (
             <ProductCard key={p.id} p={p} />
           ))}
         </section>
