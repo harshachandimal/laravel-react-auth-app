@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { IAuthInitialState, IAuthPayload } from "../../types/slices/authSlice";
+import type { IAuthInitialState, IAuthPayload } from "../../types/slices/AuthSlice";
 import { UserSignIn } from "../../api/auth/UserSignIn.ts";
 
 

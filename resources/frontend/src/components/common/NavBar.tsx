@@ -2,20 +2,28 @@
  * UI: Simple Navbar
  */
 
+import React from "react";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store.tsx";
+import { Link } from "react-router-dom";
+
 interface INavLink {
     label: string;
     href: string;
 }
 
-
 const navLinks: INavLink[] = [
-    { label: 'Home', href: '#' },
-    { label: 'Shop', href: '#' },
-    { label: 'Categories', href: '#' },
-    { label: 'Deals', href: '#' },
+    { label: "Home", href: "#" },
+    { label: "Shop", href: "#" },
+    { label: "Categories", href: "#" },
+    { label: "Deals", href: "#" },
 ];
 
 export const Navbar: React.FC = () => {
+    const cartCount = useSelector((state: RootState) =>
+        state.cart.items.reduce((sum, item) => sum + (item.qty), 0),
+    );
+
     return (
         <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur">
             <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3">
@@ -24,8 +32,8 @@ export const Navbar: React.FC = () => {
                         <span className="text-sm font-bold">LA</span>
                     </div>
                     <span className="hidden text-base font-semibold text-slate-900 sm:block">
-            Laravel Store
-          </span>
+                        Laravel Store
+                    </span>
                 </div>
 
                 <nav className="ml-4 hidden items-center gap-4 md:flex">
@@ -59,7 +67,8 @@ export const Navbar: React.FC = () => {
                         </svg>
                     </div>
 
-                    <button
+                    <Link
+                        to="/dashboard/shopping-cart"
                         aria-label="Cart"
                         className="relative rounded-full p-2 text-slate-700 hover:bg-slate-100"
                     >
@@ -70,10 +79,12 @@ export const Navbar: React.FC = () => {
                                 d="M7 7h14l-1.5 8.5a2 2 0 0 1-2 1.5H9a2 2 0 0 1-2-1.5L5 4H2"
                             />
                         </svg>
-                        <span className="absolute -right-0.5 -top-0.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-emerald-500 px-1.5 text-[10px] font-semibold text-white">
-              3
-            </span>
-                    </button>
+                        {cartCount > 0 && (
+                            <span className="absolute -right-0.5 -top-0.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-emerald-500 px-1.5 text-[10px] font-semibold text-white">
+                                {cartCount}
+                            </span>
+                        )}
+                    </Link>
 
                     <button className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full ring-1 ring-slate-200">
                         <img

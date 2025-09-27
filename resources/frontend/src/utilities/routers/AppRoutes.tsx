@@ -3,6 +3,7 @@ import { SignIn } from "../../components/signIn/SignIn.tsx";
 import { useSelector } from "react-redux";
 import {checkUserAuthentication, checkUserRole, checkUserTokenNotEmpty} from "./CheckUserAuthentication.ts";
 import Products from "../../components/products/Products.tsx";
+import ShoppingCart from "../../components/shoppingCart/ShoppingCart.tsx";
 
 interface RootState {
     auth: {
@@ -28,6 +29,16 @@ const AppRoutes: React.FC = () => {
                 element={
                     checkUserAuthentication(isAuthenticated) && checkUserTokenNotEmpty(token) && checkUserRole(user_role)? (
                         <Products />
+                    ) : (
+                        <Navigate to="/" replace />
+                    )
+                }
+            />
+            <Route
+                path="/dashboard/shopping-cart"
+                element={
+                    checkUserAuthentication(isAuthenticated) && checkUserTokenNotEmpty(token) && checkUserRole(user_role)? (
+                        <ShoppingCart />
                     ) : (
                         <Navigate to="/" replace />
                     )
