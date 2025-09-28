@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import {checkUserAuthentication, checkUserRole, checkUserTokenNotEmpty} from "./CheckUserAuthentication.ts";
 import Products from "../../components/products/Products.tsx";
 import ShoppingCart from "../../components/shoppingCart/ShoppingCart.tsx";
+import React, { type JSX } from "react";
+
 
 interface RootState {
     auth: {
@@ -18,31 +20,23 @@ const AppRoutes: React.FC = () => {
     const { isAuthenticated, token , user_role } = useSelector(
         (state: RootState) => state.auth,
     );
-
+    const isAllowed =
+        checkUserAuthentication(isAuthenticated) &&
+        checkUserTokenNotEmpty(token) &&
+        checkUserRole(user_role);
+    const requireAuth = (element: JSX.Element) =>
+        isAllowed ? element : <Navigate to="/" replace />;
 
     return (
         <Routes>
             <Route path="/" element={<SignIn />} />
-
             <Route
                 path="/dashboard"
-                element={
-                    checkUserAuthentication(isAuthenticated) && checkUserTokenNotEmpty(token) && checkUserRole(user_role)? (
-                        <Products />
-                    ) : (
-                        <Navigate to="/" replace />
-                    )
-                }
+                element={requireAuth(<Products />)}
             />
             <Route
                 path="/dashboard/shopping-cart"
-                element={
-                    checkUserAuthentication(isAuthenticated) && checkUserTokenNotEmpty(token) && checkUserRole(user_role)? (
-                        <ShoppingCart />
-                    ) : (
-                        <Navigate to="/" replace />
-                    )
-                }
+                element={requireAuth(<ShoppingCart />)}
             />
         </Routes>
     );
